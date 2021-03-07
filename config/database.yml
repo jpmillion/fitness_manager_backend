@@ -32,7 +32,7 @@ development:
   #username: jpmillion22
 
   # The password associated with the postgres role (username).
-  password: ENV['FITNESS_MANAGER_BACKEND_DATABASE_PASSWORD']
+  password: 7777777
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -82,4 +82,4 @@ production:
   <<: *default
   database: fitness_manager_backend_production
   username: jpmillion
-  password: ENV['FITNESS_MANAGER_BACKEND_DATABASE_PASSWORD']
+  password: 7777777
