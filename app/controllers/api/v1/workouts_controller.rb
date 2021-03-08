@@ -2,13 +2,14 @@ class Api::V1::WorkoutsController < ApplicationController
 
     def index
         workouts = Workout.all 
-        render json: workouts    
+        options = { include: [:exercises] }
+        render json: WorkoutSerializer.new(workouts, options)    
     end
 
     def create
         workout = Workout.new(workout_params)
         if workout.save
-            render json: workout, status: :accepted
+            render json: WorkoutSerializer.new(workout), status: :accepted
         else
             render json: { errors: workout.errors.full_messages }, status: :uprocessible_entity
         end
