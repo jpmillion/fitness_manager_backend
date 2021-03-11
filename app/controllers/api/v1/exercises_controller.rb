@@ -5,4 +5,5 @@ class Api::V1::ExercisesController < ApplicationController
         options = { include: [:category, :workout] }
         render json: ExerciseSerializer.new(exercises, options) 
     end
+    
 end
