@@ -8,8 +8,12 @@ class Api::V1::WorkoutsController < ApplicationController
 
     def create
         workout = Workout.new(workout_params)
+        params[:exercises].each do |exercise|
+            workout.exercises << Exercise.find_by(name: exercise)
+        end
         if workout.save
-            render json: WorkoutSerializer.new(workout), status: :accepted
+            options = { include: [:exercises] }
+            render json: WorkoutSerializer.new(workout, options), status: :accepted
         else
             render json: { errors: workout.errors.full_messages }, status: :uprocessible_entity
         end
@@ -18,6 +22,6 @@ class Api::V1::WorkoutsController < ApplicationController
     private
 
     def workout_params
-        params.require(:workout).permit(:name, exercise_attributes: [:id, :name, :video_url, :category_id])
+        params.require(:workout).permit(:name)
     end
 end
