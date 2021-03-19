@@ -1,7 +1,11 @@
 class Api::V1::AthletesController < ApplicationController
 
+    def create
+        byebug
+    end
+
     def show
-        
+        byebug
     end
 
     private

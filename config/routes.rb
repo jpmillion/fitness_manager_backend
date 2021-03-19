@@ -9,13 +9,13 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :workouts, only: [:index, :create, :destroy]
+      resources :workouts, only: [:create, :destroy]
     end
   end
 
   namespace :api do
     namespace :v1 do
-      resources :athlete, only: :show
+      resources :athlete, only: [:create, :show]
     end
   end
 end
