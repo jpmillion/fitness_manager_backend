@@ -15,7 +15,7 @@ class Api::V1::WorkoutsController < ApplicationController
             options = { include: [:exercises] }
             render json: WorkoutSerializer.new(workout, options), status: :accepted
         else
-            render json: { errors: workout.errors.full_messages }, status: :uprocessible_entity
+            render json: { errors: workout.errors.full_messages }, status: :unprocessable_entity
         end
     end
 
