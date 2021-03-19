@@ -20,7 +20,7 @@ class Api::V1::WorkoutsController < ApplicationController
     end
 
     def destroy
-        Workout.find_by(name: params[:id]).destroy
+        Workout.find_by(id: params[:id]).destroy
         render json: 'Workout Deleted'
     end
 
