@@ -5,7 +5,8 @@ class Api::V1::AthletesController < ApplicationController
     end
 
     def show
-        byebug
+        athlete = Athlete.find_by(name: params[:id])
+        render json: AthleteSerializer.new(athlete, { include: [:workouts] })
     end
 
     private
