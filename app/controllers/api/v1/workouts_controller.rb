@@ -1,11 +1,5 @@
 class Api::V1::WorkoutsController < ApplicationController
 
-    def index
-        workouts = Workout.all 
-        options = { include: [:exercises] }
-        render json: WorkoutSerializer.new(workouts, options)    
-    end
-
     def create
         workout = Workout.new(workout_params)
         params[:exercises].each do |exercise|
