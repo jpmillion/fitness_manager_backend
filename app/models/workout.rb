@@ -5,4 +5,5 @@ class Workout < ApplicationRecord
 
     validates :name, presence: true
     validates :name, uniqueness: { scope: :athlete }
+    validates :exercises, length: { in: 1..6, message: "Required to Choose Between 1 and 6 Exercises" }
 end
