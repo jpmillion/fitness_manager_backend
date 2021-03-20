@@ -15,18 +15,18 @@ class Api::V1::WorkoutsController < ApplicationController
             options = { include: [:exercises] }
             render json: WorkoutSerializer.new(workout, options), status: :accepted
         else
-            render json: { errors: workout.errors.full_messages }, status: :uprocessible_entity
+            render json: { errors: workout.errors.full_messages }, status: :unprocessable_entity
         end
     end
 
     def destroy
-        Workout.find_by(name: params[:id]).destroy
+        Workout.find_by(id: params[:id]).destroy
         render json: 'Workout Deleted'
     end
 
     private
 
     def workout_params
-        params.require(:workout).permit(:name)
+        params.require(:workout).permit(:name, :athlete_id)
     end
 end
