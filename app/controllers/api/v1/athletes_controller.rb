@@ -3,7 +3,8 @@ class Api::V1::AthletesController < ApplicationController
     def create
         athlete = Athlete.new(athlete_params)
         if athlete.save
-            render json: AthleteSerializer.new(athlete), status: :accepted
+            token = issue_token(athlete)
+            render json: { athlete: AthleteSerializer.new(athlete), token: token }, status: :accepted
         else
             render json: {errors: athlete.errors.full_messages}, status: :unprocessable_entity
         end
@@ -21,6 +22,6 @@ class Api::V1::AthletesController < ApplicationController
     private
 
     def athlete_params
-        params.require(:athlete).permit(:name)
+        params.require(:athlete).permit(:name, :password)
     end
 end
