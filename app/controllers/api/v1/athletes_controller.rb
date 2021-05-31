@@ -1,6 +1,7 @@
 class Api::V1::AthletesController < ApplicationController
 
     def create
+        params[:athlete][:password] = BCrypt::Password.create(params[:athlete][:password])
         athlete = Athlete.new(athlete_params)
         if athlete.save
             token = issue_token(athlete)
