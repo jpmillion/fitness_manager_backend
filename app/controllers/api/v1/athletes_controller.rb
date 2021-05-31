@@ -1,9 +1,8 @@
 class Api::V1::AthletesController < ApplicationController
 
     def create
-        params[:athlete][:password] = BCrypt::Password.create(params[:athlete][:password])
-        athlete = Athlete.new(athlete_params)
-        if athlete.save
+        athlete = Athlete.create(athlete_params)
+        if athlete.valid?
             token = issue_token(athlete)
             render json: { athlete: AthleteSerializer.new(athlete), token: token }, status: :accepted
         else
@@ -23,6 +22,6 @@ class Api::V1::AthletesController < ApplicationController
     private
 
     def athlete_params
-        params.require(:athlete).permit(:name, :password)
+        params.require(:athlete).permit(:name, :password, :password_digest)
     end
 end
