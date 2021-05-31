@@ -1,6 +1,6 @@
-class SessionsController < ApplicationController
+class Api::V1::SessionsController < ApplicationController
   def create
-    athlete = Customer.find_by(name: params[:name])
+    athlete = Athlete.find_by(name: params[:name])
     if athlete && athlete.authenticate(params[:password])
         token = issue_token(athlete)
         render json: { athlete: CustomerSerializer.new(athlete), token: token }
