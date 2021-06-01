@@ -13,8 +13,13 @@ class Api::V1::AthletesController < ApplicationController
     def authenticate
         token = request.headers['token']
         id = decoded_token(token)[0]['athlete_id']
-        athlete = Athlete.find(id)
-        render json: { athlete: AthleteSerializer.new(athlete, { include: [:workouts] }), token: token }, status: :accepted
+        if id 
+            athlete = Athlete.find(id)
+            render json: { athlete: AthleteSerializer.new(athlete, { include: [:workouts] }), token: token }, status: :accepted
+        else
+            render json: { errors: 'invalid token'}
+        end
+
     end
 
     private
