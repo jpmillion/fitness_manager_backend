@@ -19,6 +19,13 @@ class Api::V1::AthletesController < ApplicationController
         end
     end
 
+    def authenticate
+        token = request.headers['token']
+        id = decoded_token(token)[0]['athlete_id']
+        athlete = Athlete.find(id)
+        render json: { athlete: AthleteSerializer.new(athlete, { include: [:workouts] }), token: token }, status: :accepted
+    end
+
     private
 
     def athlete_params
