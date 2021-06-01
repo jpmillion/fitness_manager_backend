@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :exercises, only: :index
       resources :workouts, only: [:create, :destroy]
-      resources :athletes, only: [:create, :show]
+      resources :athletes, only: [:create, :show] do
+        get 'authenticate', on: :collection
+      end
       resources :sessions, only: :create
     end
   end
