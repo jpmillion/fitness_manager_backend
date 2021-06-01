@@ -10,15 +10,6 @@ class Api::V1::AthletesController < ApplicationController
         end
     end
 
-    def show
-        athlete = Athlete.find_by(name: params[:id])
-        if athlete
-            render json: AthleteSerializer.new(athlete, { include: [:workouts] }), status: :accepted
-        else 
-            render json: {errors: 'Invalid Entry'}, status: :unprocessable_entity
-        end
-    end
-
     def authenticate
         token = request.headers['token']
         id = decoded_token(token)[0]['athlete_id']
