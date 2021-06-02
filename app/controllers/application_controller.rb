@@ -4,7 +4,7 @@ class ApplicationController < ActionController::API
     end
 
     def issue_token(athlete)
-        JWT.encode({athlete_id: customer.id}, jwt_key, 'HS256')
+        JWT.encode({athlete_id: athlete.id}, jwt_key, 'HS256')
     end
 
     def decoded_token(token)
