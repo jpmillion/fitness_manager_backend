@@ -25,6 +25,6 @@ class Api::V1::AthletesController < ApplicationController
     private
 
     def athlete_params
-        params.require(:athlete).permit(:name, :password, :password_digest)
+        params.require(:athlete).permit(:name, :password)
     end
 end
