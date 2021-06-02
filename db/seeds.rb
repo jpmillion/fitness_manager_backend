@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+Athlete.destroy_all
 Category.destroy_all
 
 speed_agility = Category.create(name: 'Speed and Agility Training', description: 'Speed is defined as the ability to move the body in one direction as fast as possible. Agility is the ability to accelerate, decelerate, stabilize, and quickly change directions with proper posture.')
